@@ -29,6 +29,7 @@ class Dictionary:
                     words = re.split(r'[ ,\-_]+', original_line)
 
                     for word in words:
+                        word = word.strip().lower()
                         if word:
                             # Insert each word into the RBT to ensure O(log n) search time
                             self.tree.insert(word)
@@ -42,6 +43,7 @@ class Dictionary:
         Searches for a specific word in the Red-Black Tree.
         Returns: True if found, False otherwise.
         """
+        word = word.strip().lower()
         result = self.tree.search(word)
         # Check if the returned node contains actual data (not a null leaf)
         return result.data is not None
@@ -52,12 +54,16 @@ class Dictionary:
         - Prevents duplicate entries.
         - Ensures the text file formatting remains clean (new line handling).
         """
+        word = word.strip().lower()
+
         # 1. Validation: Check if the word already exists
         if self.search_word(word):
             return False, "ERROR: Word already in the dictionary!"
 
         # 2. Update Memory: Insert into the Red-Black Tree
-        self.tree.insert(word)
+        inserted = self.tree.insert(word)
+        if not inserted:
+            return False, "ERROR: Word already in the dictionary!"
 
         # 3. Update Storage: Append the word to the text file
         with open(self.filename, 'a+') as file:
