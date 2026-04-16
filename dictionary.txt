@@ -49,3 +49,4 @@ worst
 xor
 yield
 zero
+applq
