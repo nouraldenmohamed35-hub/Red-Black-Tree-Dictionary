@@ -20,7 +20,6 @@ sunset
 tiger
 umbrella
 violet
-winter
 xenon
 yellow
 zebra

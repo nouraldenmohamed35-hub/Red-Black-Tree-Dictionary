@@ -34,9 +34,9 @@ class UIManager:
                 word = input("Enter word to search: ").strip()
                 # Calls the dictionary search logic (O(log n) efficiency)
                 if self.my_dict.search_word(word):
-                    print("YES")
+                    print(f"YES, '{word}' found.")
                 else:
-                    print("NO")
+                    print(f"NO, '{word}' not found.")
 
             # --- Option 2: INSERT ---
             elif choice == '2':
@@ -44,10 +44,8 @@ class UIManager:
                 # Returns success status and updated tree stats
                 success, result = self.my_dict.insert_word(word)
                 if success:
-                    print("Inserted.")
-                    print(f"Size: {result['size']}")
-                    print(f"Height: {result['height']}")
-                    print(f"Black Height: {result['black_height']}")
+                    print(f"'{word}' added successfully.")
+                    print(f"Stats: {result}")
                 else:
                     # Prints the error message if the word already exists
                     print(result)

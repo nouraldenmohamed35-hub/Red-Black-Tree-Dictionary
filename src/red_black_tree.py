@@ -95,7 +95,7 @@ class RedBlackTree:
         # Fix any property violations (like two RED nodes in a row)
         self.fix_insert(new_node)
         self.size += 1
-
+        return True
     def fix_insert(self, k):
         """
         Restores RBT properties after insertion by recoloring or rotating.
@@ -156,11 +156,15 @@ class RedBlackTree:
         return 1 + max(self.get_height(node.left), self.get_height(node.right))
 
     def get_black_height(self, node):
-        """Calculates the black-height (number of black nodes to the leaves)."""
         if node == self.T_nil:
             return 0
-        left_bh = self.get_black_height(node.left)
-        # If current node is black, increment the count
+
+        left_bh  = self.get_black_height(node.left)
+        right_bh = self.get_black_height(node.right)
+
+        if left_bh != right_bh:
+            raise ValueError(f"RB violation at node {node.data}")
+
         if node.color == "BLACK":
             return left_bh + 1
         return left_bh

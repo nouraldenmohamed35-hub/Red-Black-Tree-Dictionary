@@ -14,4 +14,4 @@ if __name__ == "__main__":
     # 2. Launch the Application
     # This starts the GUI event loop (e.g., tkinter's mainloop), 
     # keeping the window open and responsive to user input.
-    app.run() 
+    app.run()
